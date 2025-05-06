@@ -1,0 +1,19 @@
+{
+  "name": "alonsohernandez-gmail-tests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "testAll": "node utils/createAliasEmail.ts; npx playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.45.0",
+    "@types/node": "^20.14.9"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
