@@ -15,7 +15,7 @@ const validPassword =
   // Then the user should be signed in successfully
 test.beforeEach(async ({ page }) => {
   const netflixSignInPage = new NetflixSignInPage(page);
-  netflixSignInPage.signIn(validEmail, validPassword);
+  await netflixSignInPage.signIn(validEmail, validPassword);
 });
 
 // Given the user is on the Netflix home page
