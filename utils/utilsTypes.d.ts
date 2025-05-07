@@ -9,7 +9,7 @@ export interface WaitTimes {
 }
 
 
-export interface ExpectedValuesForRolesNetflix {
+export interface LocatorsAndRolesForNetflix {
     linkProfile: string;
     whoIsWatching: string; 
     signInbutton: string;   
@@ -23,7 +23,7 @@ export interface ExpectedValuesForRolesNetflix {
     ourSelectionMoviesCard: string;  
 }
 
-export interface ExpectedValuesForRolesGmail {
+export interface LocatorsAndRolesForGmail {
  password: string;
  email: string; 
  nextButton: string;

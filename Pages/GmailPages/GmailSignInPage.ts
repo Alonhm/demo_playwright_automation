@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test";
 import type { Page } from "@playwright/test";
-import { urlsValues,expectedValuesForRolesGmail } from "../../utils/utilsValues";
+import { urlsValues,locatorsAndRolesForGmail } from "../../utils/utilsValues";
 import  WindowManager  from "../../utils/WindowManager";
 import ExplicitWaitManager from "../../utils/ExplicitWaitManager";
 
@@ -26,22 +26,22 @@ export default class GmailSignInPage {
     }
 
     async fillEmailAddress(value: string) {
-        await this.page.fill(expectedValuesForRolesGmail.email, value);
+        await this.page.fill(locatorsAndRolesForGmail.email, value);
     }
 
     async clickNextButton() {
-        await this.page.click(expectedValuesForRolesGmail.nextButton);
+        await this.page.click(locatorsAndRolesForGmail.nextButton);
         await this.explicitWaitManager.explictWait();
     }
 
     async fillEmailAddressPassword(value: string) {
         await this.explicitWaitManager.explictWait();
-        await this.page.fill(expectedValuesForRolesGmail.password, value);
+        await this.page.fill(locatorsAndRolesForGmail.password, value);
     }
 
     async checkInboxPage() {
-        await this.page.locator(expectedValuesForRolesGmail.inboxHeader).isVisible();
-        const inboxVisible = this.page.locator(expectedValuesForRolesGmail.inboxHeader);
+        await this.page.locator(locatorsAndRolesForGmail.inboxHeader).isVisible();
+        const inboxVisible = this.page.locator(locatorsAndRolesForGmail.inboxHeader);
         expect(inboxVisible).toBe(true);
         inboxVisible.screenshot({ path: "../../test-results/gmailtestscreenshots/gmailInbox.png" });
     }

@@ -1,5 +1,5 @@
 import exp from "constants";
-import { UrlsTypes,WaitTimes,ExpectedValuesForRolesNetflix,ExpectedValuesForRolesGmail,MaximizeWindowDesktop,MaximizeWindowMobile } from "./utilstypes";
+import { UrlsTypes,WaitTimes,LocatorsAndRolesForNetflix,LocatorsAndRolesForGmail,MaximizeWindowDesktop,MaximizeWindowMobile } from "./utilstypes";
 
 export const urlsValues: UrlsTypes = {
     signInPageUrl: "https://www.netflix.com/",
@@ -12,7 +12,7 @@ export const waitTimeValues: WaitTimes = {
 };
 
 
-export const expectedValuesForRolesNetflix:ExpectedValuesForRolesNetflix = {
+export const locatorsAndRolesForNetflix:LocatorsAndRolesForNetflix = {
     linkProfile: "Alon",
     whoIsWatching: "h1.profile-gate-label",   
     signInbutton: "Sign In", 
@@ -26,7 +26,7 @@ export const expectedValuesForRolesNetflix:ExpectedValuesForRolesNetflix = {
     ourSelectionMoviesCard: "div.boxart-container",
 }
 
-export const expectedValuesForRolesGmail:ExpectedValuesForRolesGmail = {
+export const locatorsAndRolesForGmail:LocatorsAndRolesForGmail = {
     password: "input[type='password']",
     email: "input[type='email']",
     nextButton: "button:has-text('Siguiente')",

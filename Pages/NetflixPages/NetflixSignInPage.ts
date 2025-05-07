@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test";
 import type { Page } from "@playwright/test";
-import { urlsValues, expectedValuesForRolesNetflix } from "../../utils/utilsValues";
+import { urlsValues, locatorsAndRolesForNetflix } from "../../utils/utilsValues";
 import  WindowManager  from "../../utils/WindowManager";
 import ExplicitWaitManager from "../../utils/ExplicitWaitManager";
 
@@ -30,34 +30,34 @@ export default class NetflixSignInPage {
 
   async clickSignInButton() {
     await this.page
-      .getByRole("button", { name: expectedValuesForRolesNetflix.signInbutton })
-      .filter({ hasText: expectedValuesForRolesNetflix.signInButtonHasText })
+      .getByRole("button", { name: locatorsAndRolesForNetflix.signInbutton })
+      .filter({ hasText: locatorsAndRolesForNetflix.signInButtonHasText })
       .isVisible();
 
-    await this.page.getByRole("button", { name: expectedValuesForRolesNetflix.signInbutton })
-      .filter({ hasText: expectedValuesForRolesNetflix.signInButtonHasText })
+    await this.page.getByRole("button", { name: locatorsAndRolesForNetflix.signInbutton })
+      .filter({ hasText: locatorsAndRolesForNetflix.signInButtonHasText })
       .click();
   }
 
   async fillEmailAddress(value: string) {
     await expect(
-      this.page.getByLabel(expectedValuesForRolesNetflix.inputEmailAddress)
+      this.page.getByLabel(locatorsAndRolesForNetflix.inputEmailAddress)
     ).toBeVisible();
 
    
     await this.page
-    .getByLabel(expectedValuesForRolesNetflix.inputEmailAddress).fill(value);
+    .getByLabel(locatorsAndRolesForNetflix.inputEmailAddress).fill(value);
 
   }
 
   async fillEmailAddressPassword(value: string) {
     await this.explicitWaitManager.explictWait();
     await expect(
-      this.page.getByLabel(expectedValuesForRolesNetflix.inputPassword)
+      this.page.getByLabel(locatorsAndRolesForNetflix.inputPassword)
     ).toBeVisible();
 
     await this.page
-    .getByLabel(expectedValuesForRolesNetflix.inputPassword).fill(value);
+    .getByLabel(locatorsAndRolesForNetflix.inputPassword).fill(value);
 
   }
 
@@ -80,8 +80,8 @@ export default class NetflixSignInPage {
     await this.fillEmailAddressPassword(password);
 
     await this.page
-      .getByRole("button", { name : expectedValuesForRolesNetflix.signInbutton })
-      .filter({ hasText: expectedValuesForRolesNetflix.signInButtonHasText })
+      .getByRole("button", { name : locatorsAndRolesForNetflix.signInbutton })
+      .filter({ hasText: locatorsAndRolesForNetflix.signInButtonHasText })
       .click();
 
     await this.explicitWaitManager.explictWait();
@@ -89,7 +89,7 @@ export default class NetflixSignInPage {
     await expect(this.page).toHaveURL(urlsValues.homePageUrl);
 
     
-    const h1Element = this.page.locator(expectedValuesForRolesNetflix.whoIsWatching);
+    const h1Element = this.page.locator(locatorsAndRolesForNetflix.whoIsWatching);
     await expect(h1Element).toBeVisible();
     await h1Element.screenshot({ path: `../../test-results/netflixtest/whoIsWatching.png` });
   } 
