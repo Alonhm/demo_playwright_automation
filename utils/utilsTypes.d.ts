@@ -8,11 +8,7 @@ export interface WaitTimes {
 }
 
 export interface HomePageXPaths {
-    moviesMenuXpath: string;
-    genereXpath: string;    
-    intrigeXpath: string;
     ourSelectionMoviesCardXpath: string;
-    whoIsWatchingProfileXpath: string;
 }
 
 export interface ExpectedValuesForRoles {
@@ -22,6 +18,11 @@ export interface ExpectedValuesForRoles {
     signInButtonHasText: string;
     inputEmailAddress: string;
     inputPassword: string;
+    moviesMenu: string;
+    genereMenu: string; 
+    genereMenuOpen: string;
+    intrigeMenu: string;
+    ourSelectionMovies: string;  
 }
 
 export interface MaximizeWindowDesktop {

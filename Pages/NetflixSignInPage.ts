@@ -87,9 +87,10 @@ export default class NetflixSignInPage {
     await this.explicitWaitManager.explictWait();
     
     await expect(this.page).toHaveURL(urlsValues.homePageUrl);
-    await expect(
-      this.page.getByRole("heading", { name: expectedValuesForRoles.whoIsWatching })
-    ).toBeVisible();
 
-  }
+    
+    const h1Element = this.page.locator(expectedValuesForRoles.whoIsWatching);
+    await expect(h1Element).toBeVisible();
+    await h1Element.screenshot({ path: `./whoIsWatching.png` });
+  } 
 }

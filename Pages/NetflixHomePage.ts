@@ -1,20 +1,12 @@
 import { expect } from "@playwright/test";
 import type { Page } from "@playwright/test";
-import  ExplicitWaitManager  from "../utils/ExplicitWaitManager";
-import { xpathHomePageValues,expectedValuesForRoles } from "../utils/utilsValues";
+import { expectedValuesForRoles } from "../utils/utilsValues";
 
 export default class NetflixHomepage {
   private page: Page;
-  private moviesMenuXpath = xpathHomePageValues.moviesMenuXpath;
-  private genereXpath= xpathHomePageValues.genereXpath;
-  private intrigeXpath=xpathHomePageValues.intrigeXpath;
-  private ourSelectionMoviesCardXpath=xpathHomePageValues.ourSelectionMoviesCardXpath;
-  private whoIsWatchingProfileXpath=xpathHomePageValues.whoIsWatchingProfileXpath;
-  private explicitWaitManager: ExplicitWaitManager;
 
   constructor(page: Page) {
     this.page = page;
-    this.explicitWaitManager = new ExplicitWaitManager(page);
   }
 
   async clickOnUserProfile() {
@@ -25,23 +17,25 @@ export default class NetflixHomepage {
   //this method will navigate to the Netflix home page
   // and click on the movies menu
   async clickMoviesMenu() {
-    //this.explicitWaitManager.waitForElementToBeVisible(this.moviesMenuXpath);
-    await this.page.locator(this.moviesMenuXpath).click();
+    await this.page.locator(expectedValuesForRoles.moviesMenu).isVisible();
+    await this.page.locator(expectedValuesForRoles.moviesMenu).click();
   }
 
   //this method will click on the genre menu
   // and open the genre page
   // and select the Intrigue cinema menu
   async openGenreMenu() {
-    //this.explicitWaitManager.waitForElementToBeVisible(this.moviesMenuXpath);
-    await this.page.locator(this.genereXpath).click();
+    await this.page.locator(expectedValuesForRoles.genereMenu).isVisible();
+    await this.page.locator(expectedValuesForRoles.genereMenu).click();
   }
 
   //this method will click on the Intrigue cinema menu
   // and open the Intrigue cinema page
   async clickIntrige() {
-    //this.explicitWaitManager.waitForElementToBeVisible(this.moviesMenuXpath);
-    await this.page.locator(this.intrigeXpath).click();
+    await this.page.locator(expectedValuesForRoles.genereMenuOpen).isVisible();
+
+    await this.page.locator(expectedValuesForRoles.intrigeMenu).isVisible();
+    await this.page.locator(expectedValuesForRoles.intrigeMenu).click();
   }
 
   //this method will verify the movie card titles
@@ -50,7 +44,7 @@ export default class NetflixHomepage {
   async verifyOurSelectionMoviesTitles() {
    // this.explicitWaitManager.waitForElementToBeVisible(this.moviesMenuXpath);
    //select the first movie card
-    const movieCards =  await this.page.locator(this.ourSelectionMoviesCardXpath).all();
+    const movieCards =  await this.page.locator(expectedValuesForRoles.ourSelectionMoviesCard).all();
 
     const firstThreeMovieCards = movieCards.slice(0, 3);
   

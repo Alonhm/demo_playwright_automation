@@ -10,21 +10,19 @@ export const waitTimeValues: WaitTimes = {
     defaultTimeOut: 1000, // default timeout for all wait times
 };
 
-export const xpathHomePageValues: HomePageXPaths = {
-    moviesMenuXpath: "xpath=//*[text()='Peliculas']/../..",
-    genereXpath: "xpath=//div[@class='nfDropDown open theme-lakira']",
-    intrigeXpath: "xpath=//*[text()='Intrigue cinema']/../..",
-    ourSelectionMoviesCardXpath: "xpath=//div[@id='row-1']",
-    whoIsWatchingProfileXpath: "xpath=//li[@class='profile'][1]//a[@tabindex='0']",
-}
 
 export const expectedValuesForRoles:ExpectedValuesForRoles = {
     linkProfile: "Alon",
-    whoIsWatching: "Who's watching now?",   
+    whoIsWatching: "h1.profile-gate-label",   
     signInbutton: "Sign In", 
     signInButtonHasText: "Sign In",
     inputEmailAddress: "Email or mobile number",
     inputPassword: "Password",
+    moviesMenu: "a[href='/browse/genre/34399'][data-navigation-tab-name='genreCategory']",
+    genereMenu: "div.nfDropDown.theme-lakira",
+    genereMenuOpen: "div.nfDropDown.open.theme-lakira",
+    intrigeMenu: "a[href='/browse/genre/8933?bc=34399'][class='sub-menu-link']",
+    ourSelectionMoviesCard: "div.boxart-container",
 }
 
 export const maximizeWindowDesktop: MaximizeWindowDesktop = {
