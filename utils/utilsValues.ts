@@ -29,7 +29,7 @@ export const locatorsAndRolesForNetflix:LocatorsAndRolesForNetflix = {
 export const locatorsAndRolesForGmail:LocatorsAndRolesForGmail = {
     password: "input[type='password']",
     email: "input[type='email']",
-    nextButton: "button:has-text('Siguiente')",
+    nextButton: "Next",
     inboxHeader: "div[aria-label='Bandeja de entrada']",
 }
 

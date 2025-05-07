@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 import GmailSignInPage from "../../Pages/GmailPages/GmailSignInPage";   
 
 const validEmail = process.env.GMAIL_VALID_EMAIL || "NOT PICKING UP ENV VARIABLES";
@@ -14,5 +14,4 @@ const validPassword =
 test("Verify Gmail inbox after SignIn ", async ({ page }) => {
     const gmailSignInPage = new GmailSignInPage(page);
     await gmailSignInPage.checkSucessfullSignIn(validEmail, validPassword);
-    await gmailSignInPage.closeBrowser();
 });

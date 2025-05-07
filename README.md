@@ -43,3 +43,15 @@ test("Verify suspense movies after SignIn ", async ({ page }) => {
 In order to keep clean and maintainable code for the tests, Pages and their their methods along with the most important selectors should be created each in a .ts file under the Pages directory.
 
 While the tests folder is a little less straightforward, there should be a directory for each "Section" or set of userflows relating to anything. As an example, the signIn directory contains tests for cases where a user might signIn both successfully and unsuccessfully due to using correct and incorrect data for their credentials, each test written should cover a user flow vital to the behavior of the app.
+
+##How to execute an specific test:
+After clone the repository and move in terminal to the base directory of this, you can execute something like this to indicate to playwright execute an specific test ts class with a different device and screen resolution, at this time -project="Mobile Safari" execute in chrome with user agent userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1' on iphone device emulator. 
+Or for Netflix test exercise you use --project="chromium" to execute in desktop resoultion.
+
+```
+npx playwright test signInGmailInbox.spec.ts --debug --project="Mobile Safari" 
+or
+npx playwright test homePageReadSuspenseMovies.spec.ts --debug --project="chromium" 
+```
+
+
