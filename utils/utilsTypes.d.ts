@@ -1,17 +1,15 @@
 export interface UrlsTypes {
     signInPageUrl: string;  
     homePageUrl: string;
+    gmailSignInPageUrl: string;
 }
 
 export interface WaitTimes {
     defaultTimeOut: number;  
 }
 
-export interface HomePageXPaths {
-    ourSelectionMoviesCardXpath: string;
-}
 
-export interface ExpectedValuesForRoles {
+export interface ExpectedValuesForRolesNetflix {
     linkProfile: string;
     whoIsWatching: string; 
     signInbutton: string;   
@@ -22,7 +20,14 @@ export interface ExpectedValuesForRoles {
     genereMenu: string; 
     genereMenuOpen: string;
     intrigeMenu: string;
-    ourSelectionMovies: string;  
+    ourSelectionMoviesCard: string;  
+}
+
+export interface ExpectedValuesForRolesGmail {
+ password: string;
+ email: string; 
+ nextButton: string;
+ inboxHeader: string;
 }
 
 export interface MaximizeWindowDesktop {

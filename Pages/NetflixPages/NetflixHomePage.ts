@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test";
 import type { Page } from "@playwright/test";
-import { expectedValuesForRoles } from "../utils/utilsValues";
+import { expectedValuesForRolesNetflix } from "../../utils/utilsValues";
 
 export default class NetflixHomepage {
   private page: Page;
@@ -10,32 +10,32 @@ export default class NetflixHomepage {
   }
 
   async clickOnUserProfile() {
-    await this.page.getByRole("link", { name: expectedValuesForRoles.linkProfile }).isVisible();
-    await this.page.getByRole("link", { name: expectedValuesForRoles.linkProfile }).click();
+    await this.page.getByRole("link", { name: expectedValuesForRolesNetflix.linkProfile }).isVisible();
+    await this.page.getByRole("link", { name: expectedValuesForRolesNetflix.linkProfile }).click();
   }
 
   //this method will navigate to the Netflix home page
   // and click on the movies menu
   async clickMoviesMenu() {
-    await this.page.locator(expectedValuesForRoles.moviesMenu).isVisible();
-    await this.page.locator(expectedValuesForRoles.moviesMenu).click();
+    await this.page.locator(expectedValuesForRolesNetflix.moviesMenu).isVisible();
+    await this.page.locator(expectedValuesForRolesNetflix.moviesMenu).click();
   }
 
   //this method will click on the genre menu
   // and open the genre page
   // and select the Intrigue cinema menu
   async openGenreMenu() {
-    await this.page.locator(expectedValuesForRoles.genereMenu).isVisible();
-    await this.page.locator(expectedValuesForRoles.genereMenu).click();
+    await this.page.locator(expectedValuesForRolesNetflix.genereMenu).isVisible();
+    await this.page.locator(expectedValuesForRolesNetflix.genereMenu).click();
   }
 
   //this method will click on the Intrigue cinema menu
   // and open the Intrigue cinema page
   async clickIntrige() {
-    await this.page.locator(expectedValuesForRoles.genereMenuOpen).isVisible();
+    await this.page.locator(expectedValuesForRolesNetflix.genereMenuOpen).isVisible();
 
-    await this.page.locator(expectedValuesForRoles.intrigeMenu).isVisible();
-    await this.page.locator(expectedValuesForRoles.intrigeMenu).click();
+    await this.page.locator(expectedValuesForRolesNetflix.intrigeMenu).isVisible();
+    await this.page.locator(expectedValuesForRolesNetflix.intrigeMenu).click();
   }
 
   //this method will verify the movie card titles
@@ -44,7 +44,7 @@ export default class NetflixHomepage {
   async verifyOurSelectionMoviesTitles() {
    // this.explicitWaitManager.waitForElementToBeVisible(this.moviesMenuXpath);
    //select the first movie card
-    const movieCards =  await this.page.locator(expectedValuesForRoles.ourSelectionMoviesCard).all();
+    const movieCards =  await this.page.locator(expectedValuesForRolesNetflix.ourSelectionMoviesCard).all();
 
     const firstThreeMovieCards = movieCards.slice(0, 3);
   
@@ -56,9 +56,15 @@ export default class NetflixHomepage {
       // print the movie card title
       console.log("[Netflix: Intrigue Movies, Our selection movies titles: ", movieCardTitle.textContent(), "]");
       // take a screenshot of the movie card
-      await movieCardImage.screenshot({ path: `./movieCard${key}.png` });
+      await movieCardImage.screenshot({ path: `../../test-results/netflixtestscreenshots/movieCard${key}.png` });
     }
 
+  }
+  async closeBrowser() {
+    await this.page.close();
+  }
+  async closeContext() {  
+    await this.page.context().close();
   }
 
 }

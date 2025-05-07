@@ -48,6 +48,19 @@ export default defineConfig({
         },
       },
     },
+    {
+         name: 'Mobile Safari',
+         use: { ...devices['iPhone 12'],
+            viewport: { width: 375, height: 812 },
+            isMobile: true,
+            hasTouch: true,
+            userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1',
+            contextOptions: {
+              screen: { width: 375, height: 812 },  
+            },
+            headless: false,
+         },
+    },
 
     // {
     //   name: "firefox",

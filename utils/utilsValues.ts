@@ -1,9 +1,10 @@
 import exp from "constants";
-import { UrlsTypes,WaitTimes,HomePageXPaths,ExpectedValuesForRoles,MaximizeWindowDesktop,MaximizeWindowMobile } from "./utilstypes";
+import { UrlsTypes,WaitTimes,ExpectedValuesForRolesNetflix,ExpectedValuesForRolesGmail,MaximizeWindowDesktop,MaximizeWindowMobile } from "./utilstypes";
 
 export const urlsValues: UrlsTypes = {
     signInPageUrl: "https://www.netflix.com/",
     homePageUrl: "https://www.netflix.com/browse",
+    gmailSignInPageUrl: "https://mail.google.com",
 };
 
 export const waitTimeValues: WaitTimes = {
@@ -11,7 +12,7 @@ export const waitTimeValues: WaitTimes = {
 };
 
 
-export const expectedValuesForRoles:ExpectedValuesForRoles = {
+export const expectedValuesForRolesNetflix:ExpectedValuesForRolesNetflix = {
     linkProfile: "Alon",
     whoIsWatching: "h1.profile-gate-label",   
     signInbutton: "Sign In", 
@@ -23,6 +24,13 @@ export const expectedValuesForRoles:ExpectedValuesForRoles = {
     genereMenuOpen: "div.nfDropDown.open.theme-lakira",
     intrigeMenu: "a[href='/browse/genre/8933?bc=34399'][class='sub-menu-link']",
     ourSelectionMoviesCard: "div.boxart-container",
+}
+
+export const expectedValuesForRolesGmail:ExpectedValuesForRolesGmail = {
+    password: "input[type='password']",
+    email: "input[type='email']",
+    nextButton: "button:has-text('Siguiente')",
+    inboxHeader: "div[aria-label='Bandeja de entrada']",
 }
 
 export const maximizeWindowDesktop: MaximizeWindowDesktop = {

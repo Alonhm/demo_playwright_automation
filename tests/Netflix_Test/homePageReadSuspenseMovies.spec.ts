@@ -1,11 +1,11 @@
 import { test, expect } from "@playwright/test";
-import NetflixSignInPage from "../../Pages/NetflixSignInPage";
-import NetflixHomePage from "../../Pages/NetflixHomePage";  
+import NetflixSignInPage from "../../Pages/NetflixPages/NetflixSignInPage";
+import NetflixHomePage from  "../../Pages/NetflixPages/NetflixHomePage";
 
 
-const validEmail = process.env.VALID_EMAIL || "NOT PICKING UP ENV VARIABLES";
+const validEmail = process.env.NETFLIX_VALID_EMAIL || "NOT PICKING UP ENV VARIABLES";
 const validPassword =
-  process.env.VALID_PASSWORD || "NOT PICKING UP ENV VARIABLES";
+  process.env.NETFLIX_VALID_PASSWORD || "NOT PICKING UP ENV VARIABLES";
   
 // this test will run before each test
   //Given the user is on the Netflix sign in page
@@ -31,4 +31,5 @@ test("Verify suspense movies after SignIn ", async ({ page }) => {
   await netflixHomePage.openGenreMenu();
   await netflixHomePage.clickIntrige();
   await netflixHomePage.verifyOurSelectionMoviesTitles();
+  await netflixHomePage.closeBrowser();
 });
