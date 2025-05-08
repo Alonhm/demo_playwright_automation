@@ -59,17 +59,20 @@ While the tests folder is a little less straightforward, there should be a direc
 
 ### Test Files or Test Scenarios available
 As requested on the documentation, there are two test files that represents the exercises:
-- Exercise 1: homePageReadSuspenseMovies.spec.ts   for the scenario:
+- Exercise 1: *homePageReadSuspenseMovies.spec.ts* for the scenario:
+```
 Automatizar el inicio de sesión en Netflix desde la página web:
 Navegar por la plataforma. 
 Maximizar la pantalla.
-Capturar e imprimir los títulos de tres películas de suspenso. 
+Capturar e imprimir los títulos de tres películas de suspenso.
+```
 
-- Exercise 2: signInGmailInbox.spec.ts  for the scenario:
-Automatizar el inicio de sesión en Gmail para un dispositivo móvil 
+- Exercise 2: *signInGmailInbox.spec.ts* for the scenario:
+```
+Automatizar el inicio de sesión en Gmail para un dispositivo móvil
 Navegar en la aplicación móvil de Gmail. 
 Validar el mensaje de acceso exitoso. 
-
+```
   
 ## How to execute an specific test
 After clone the repository and move in terminal to the base directory of this, you can execute something like this to indicate to playwright execute an specific test ts class with a different device and screen resolution, at this time -project="Mobile Safari" execute in chrome with user agent userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1' on iphone device emulator. 
