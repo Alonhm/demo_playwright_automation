@@ -24,7 +24,7 @@ test.beforeEach(async ({ page }) => {
 // And clicks on the Intrigue cinema menu
 // Then the user should see the movie card titles
 // And the user should take a screenshot of the first 3 movie cards
-test("Verify suspense movies after SignIn ", async ({ page }) => {
+test("[Netflix]: Verify suspense movies after SignIn ", async ({ page }) => {
   const netflixHomePage = new NetflixHomePage(page);
   await netflixHomePage.clickOnUserProfile();
   await netflixHomePage.clickMoviesMenu();

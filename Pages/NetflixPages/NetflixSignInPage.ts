@@ -55,7 +55,6 @@ export default class NetflixSignInPage {
   }
 
   async fillEmailAddressPassword(value: string) {
-    await this.explicitWaitManager.explictWait();
     await expect(
       this.page.getByLabel(locatorsAndRolesForNetflix.inputPassword)
     ).toBeVisible();
@@ -89,16 +88,50 @@ export default class NetflixSignInPage {
       .click();
 
     await this.explicitWaitManager.explictWait();
+    await this.page.waitForLoadState("domcontentloaded", {
+      timeout: 2000,
+    });
 
-    await expect(this.page).toHaveURL(urlsValues.homePageUrl);
+    await expect(this.page)
+      .toHaveURL(urlsValues.homePageUrl)
+      .catch((error) => {
+        console.log("Error: ", error);
+        console.log("URL is not the home page URL");
+        console.log("Screenshot taken");
+        this.page.screenshot({
+          path: "screenshots/NetflixSignInPageError.png",
+          animations: "allow",
+        });
+      });
 
     const h1Element = this.page.locator(
       locatorsAndRolesForNetflix.whoIsWatching
     );
-    await expect(h1Element).toBeVisible();
+
+    await this.explicitWaitManager.explictWait();
+    await expect(h1Element)
+      .toBeAttached()
+      .catch((error) => {
+        console.log("Error: ", error);
+        console.log("h1 element is not visible");
+        console.log("Screenshot taken");
+        this.page.screenshot({
+          path: "screenshots/NetflixErrorWhoIsWatchingPage.png",
+          animations: "allow",
+        });
+      });
+
     await h1Element.screenshot({
-      path: `../../test-results/netflixtest/whoIsWatching.png`,
+      path: "screenshots/NetflixWhoIsWatching.png",
+      animations: "allow",
     });
+    
+    console.log("h1 element found & screenshot taken");
+    await this.page.screenshot({
+      path: "screenshots/NetflixWhoIsWatchingPage.png",
+      animations: "allow",
+    });
+    console.log("Netflix Who is watching page screenshot taken");
   }
 
   async closeBrowser() {

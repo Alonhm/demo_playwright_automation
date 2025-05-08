@@ -26,7 +26,9 @@ export interface LocatorsAndRolesForGmail {
   password: string;
   email: string;
   nextButton: string;
-  inboxHeader: string;
+  inboxLink: string;
+  notInterestedLink: string;
+  searchInput: string;
 }
 
 export interface MaximizeWindowDesktop {

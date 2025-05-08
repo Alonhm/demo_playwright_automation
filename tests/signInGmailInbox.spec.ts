@@ -12,7 +12,7 @@ const validPassword =
 // Then the user should be signed in successfully
 // And the user should see the inbox page
 // And the user should see the inbox header
-test("Verify Gmail inbox after SignIn with valid credentials", async ({page}) => {
+test("[Gmail]: Verify inbox after SignIn with valid credentials", async ({page}) => {
   const gmailSignInPage = new GmailSignInPage(page);  
   await gmailSignInPage.checkSucessfullSignIn(validEmail, validPassword);
   });

@@ -15,7 +15,7 @@ export const urlsValues: UrlsTypes = {
 };
 
 export const waitTimeValues: WaitTimes = {
-  defaultTimeOut: 1000, // default timeout for all wait times
+  defaultTimeOut: 500, // default timeout for all wait times
 };
 
 export const locatorsAndRolesForNetflix: LocatorsAndRolesForNetflix = {
@@ -37,7 +37,9 @@ export const locatorsAndRolesForGmail: LocatorsAndRolesForGmail = {
   password: "input[type='password']",
   email: "input[type='email']",
   nextButton: "Next",
-  inboxHeader: "div[aria-label='Bandeja de entrada']",
+  inboxLink: "Inbox",
+  notInterestedLink: "I am not interested",
+  searchInput: "Search",
 };
 
 export const maximizeWindowDesktop: MaximizeWindowDesktop = {

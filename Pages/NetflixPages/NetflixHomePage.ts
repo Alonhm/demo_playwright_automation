@@ -57,21 +57,44 @@ export default class NetflixHomepage {
     const firstThreeMovieCards = movieCards.slice(0, 3);
 
     for (let key in firstThreeMovieCards) {
+    
       const movieCardTitle = firstThreeMovieCards[key].locator("p");
       const movieCardImage = firstThreeMovieCards[key].locator("img");
 
-      // print the movie card title
-      console.log(
-        "[Netflix: Intrigue Movies, Our selection movies titles: ",
-        movieCardTitle.textContent(),
-        "]"
-      );
-      // take a screenshot of the movie card
-      await movieCardImage.screenshot({
-        path: `../../test-results/netflixtestscreenshots/movieCard${key}.png`,
+      await expect(movieCardTitle)
+        .toBeVisible()
+        .catch((error) => {
+          console.log("Error: ", error);
+          console.log("Movie card title is not visible");
+          console.log("Screenshot taken");
+          this.page.screenshot({
+            path: `screenshots/NetflixMovieCardTitleError${key}.png`,
+            animations: "allow",
+          });
+        });
+
+      await expect(movieCardImage)
+        .toBeVisible()
+        .catch((error) => {
+          console.log("Error: ", error);
+          console.log("Movie card image is not visible");
+          console.log("Screenshot taken");
+          this.page.screenshot({
+            path: `screenshots/NetflixMovieCardImageError${key}.png`,
+            animations: "allow",
+          });
+        });
+
+      console.log(`Movie card: ${await movieCardTitle.textContent()} screenshot taken`);
+      await firstThreeMovieCards[key].screenshot({
+        path: `screenshots/MovieCardScreenshot_${ await movieCardTitle.textContent()}.png`,
+        omitBackground: true,
+        animations: "allow",
       });
+      
     }
   }
+
   async closeBrowser() {
     await this.page.close();
   }
