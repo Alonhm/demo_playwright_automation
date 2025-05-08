@@ -59,12 +59,90 @@ While the tests folder is a little less straightforward, there should be a direc
 
 ## How to execute an specific test
 After clone the repository and move in terminal to the base directory of this, you can execute something like this to indicate to playwright execute an specific test ts class with a different device and screen resolution, at this time -project="Mobile Safari" execute in chrome with user agent userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1' on iphone device emulator. 
-Or for Netflix test exercise you use --project="chromium" to execute in desktop resoultion.
+Or for Netflix test exercise you use --project="chromium" to execute in desktop resoultion OR other for mobile devices like iPhone 14 Safari or Pixel 7 Chrome
 
 ```
 npx playwright test signInGmailInbox.spec.ts --debug --project="Mobile Safari" 
 or
-npx playwright test homePageReadSuspenseMovies.spec.ts --debug --project="chromium" 
+npx playwright test homePageReadSuspenseMovies.spec.ts --debug --project="chromium"
+or
+npx playwright test homePageReadSuspenseMovies.spec.ts --debug --project="Mobile Chrome"
 ```
 
+Playwright configuration file that interprets the above commands:
+```
+import { defineConfig, devices } from "@playwright/test";
+import { config } from "dotenv";
+import path from "path";
 
+config({ path: ".env" });
+
+/**
+ * Read environment variables from file.
+ * https://github.com/motdotla/dotenv
+ */
+// import dotenv from 'dotenv';
+// dotenv.config({ path: path.resolve(__dirname, '.env') });
+
+/**
+ * See https://playwright.dev/docs/test-configuration.
+ */
+export default defineConfig({
+  testDir: "./tests",
+  /* Run tests in files in parallel */
+  fullyParallel: false,
+  /* Fail the build on CI if you accidentally left test.only in the source code. */
+  forbidOnly: !!process.env.CI,
+  /* Retry on CI only */
+  retries: process.env.CI ? 1 : 0,
+  /* Opt out of parallel tests on CI. */
+  workers: process.env.CI ? 4 : undefined,
+  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  reporter: "html",
+  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  use: {
+    /* Base URL to use in actions like `await page.goto('/')`. */
+    // baseURL: 'http://127.0.0.1:3000',
+    actionTimeout: 0,
+    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    trace: "on-first-retry",
+    video: "retain-on-failure",
+    screenshot: "on",
+  },
+
+  /* Configure projects for major browsers */
+  projects: [
+     {
+      name: "chromium",
+      use: {
+        ...devices["Desktop Chrome"],
+        contextOptions: {
+          screen: { width: 1920, height: 1080 },
+        },
+      },
+    },
+    {
+      name: "Mobile Chrome",
+      use: {
+        ...devices["pixel 7"],
+        isMobile: true,
+        headless: false,
+      },
+    }, 
+    {
+      name: "Mobile Safari",
+      use: {
+        ...devices["iPhone 14"],
+        isMobile: true,
+        userAgent:
+          "Mozilla/5.0 (iPhone; CPU iPhone OS 18_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.4 Mobile/15E148 Safari/604.1",
+        contextOptions: {
+          viewport: { width: 375, height: 812 },
+        },
+        headless: false,
+      },
+    },
+  ],
+});
+```
+Notice: the different view points configurations for the GMail test scenario
