@@ -10,8 +10,12 @@ export default class NetflixHomepage {
   }
 
   async clickOnUserProfile() {
-    await this.page.getByRole("link", { name: locatorsAndRolesForNetflix.linkProfile }).isVisible();
-    await this.page.getByRole("link", { name: locatorsAndRolesForNetflix.linkProfile }).click();
+    await this.page
+      .getByRole("link", { name: locatorsAndRolesForNetflix.linkProfile })
+      .isVisible();
+    await this.page
+      .getByRole("link", { name: locatorsAndRolesForNetflix.linkProfile })
+      .click();
   }
 
   //this method will navigate to the Netflix home page
@@ -32,7 +36,9 @@ export default class NetflixHomepage {
   //this method will click on the Intrigue cinema menu
   // and open the Intrigue cinema page
   async clickIntrige() {
-    await this.page.locator(locatorsAndRolesForNetflix.genereMenuOpen).isVisible();
+    await this.page
+      .locator(locatorsAndRolesForNetflix.genereMenuOpen)
+      .isVisible();
 
     await this.page.locator(locatorsAndRolesForNetflix.intrigeMenu).isVisible();
     await this.page.locator(locatorsAndRolesForNetflix.intrigeMenu).click();
@@ -42,29 +48,34 @@ export default class NetflixHomepage {
   // and take a screenshot of the first movie card
   // and print the movie card title
   async verifyOurSelectionMoviesTitles() {
-   // this.explicitWaitManager.waitForElementToBeVisible(this.moviesMenuXpath);
-   //select the first movie card
-    const movieCards =  await this.page.locator(locatorsAndRolesForNetflix.ourSelectionMoviesCard).all();
+    // this.explicitWaitManager.waitForElementToBeVisible(this.moviesMenuXpath);
+    //select the first movie card
+    const movieCards = await this.page
+      .locator(locatorsAndRolesForNetflix.ourSelectionMoviesCard)
+      .all();
 
     const firstThreeMovieCards = movieCards.slice(0, 3);
-  
 
     for (let key in firstThreeMovieCards) {
       const movieCardTitle = firstThreeMovieCards[key].locator("p");
       const movieCardImage = firstThreeMovieCards[key].locator("img");
 
       // print the movie card title
-      console.log("[Netflix: Intrigue Movies, Our selection movies titles: ", movieCardTitle.textContent(), "]");
+      console.log(
+        "[Netflix: Intrigue Movies, Our selection movies titles: ",
+        movieCardTitle.textContent(),
+        "]"
+      );
       // take a screenshot of the movie card
-      await movieCardImage.screenshot({ path: `../../test-results/netflixtestscreenshots/movieCard${key}.png` });
+      await movieCardImage.screenshot({
+        path: `../../test-results/netflixtestscreenshots/movieCard${key}.png`,
+      });
     }
-
   }
   async closeBrowser() {
     await this.page.close();
   }
-  async closeContext() {  
+  async closeContext() {
     await this.page.context().close();
   }
-
 }

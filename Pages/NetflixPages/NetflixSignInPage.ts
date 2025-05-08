@@ -1,15 +1,18 @@
 import { expect } from "@playwright/test";
 import type { Page } from "@playwright/test";
-import { urlsValues, locatorsAndRolesForNetflix } from "../../utils/utilsValues";
-import  WindowManager  from "../../utils/WindowManager";
+import {
+  urlsValues,
+  locatorsAndRolesForNetflix,
+} from "../../utils/utilsValues";
+import WindowManager from "../../utils/WindowManager";
 import ExplicitWaitManager from "../../utils/ExplicitWaitManager";
 
-// This class is used to sign in to Netflix 
+// This class is used to sign in to Netflix
 // It contains methods to navigate to the sign in page, maximize the window, click on the sign in button, fill the email address and password, and sign in
 // It uses the Playwright library to interact with the page.
 export default class NetflixSignInPage {
   private page: Page;
-  private url= urlsValues.signInPageUrl;
+  private url = urlsValues.signInPageUrl;
   private windowManager: WindowManager;
   private explicitWaitManager: ExplicitWaitManager;
 
@@ -21,7 +24,8 @@ export default class NetflixSignInPage {
 
   async navigate() {
     await this.page.goto(this.url, {
-      waitUntil: "load"});
+      waitUntil: "load",
+    });
   }
 
   async maximizeWindow() {
@@ -34,7 +38,8 @@ export default class NetflixSignInPage {
       .filter({ hasText: locatorsAndRolesForNetflix.signInButtonHasText })
       .isVisible();
 
-    await this.page.getByRole("button", { name: locatorsAndRolesForNetflix.signInbutton })
+    await this.page
+      .getByRole("button", { name: locatorsAndRolesForNetflix.signInbutton })
       .filter({ hasText: locatorsAndRolesForNetflix.signInButtonHasText })
       .click();
   }
@@ -44,10 +49,9 @@ export default class NetflixSignInPage {
       this.page.getByLabel(locatorsAndRolesForNetflix.inputEmailAddress)
     ).toBeVisible();
 
-   
     await this.page
-    .getByLabel(locatorsAndRolesForNetflix.inputEmailAddress).fill(value);
-
+      .getByLabel(locatorsAndRolesForNetflix.inputEmailAddress)
+      .fill(value);
   }
 
   async fillEmailAddressPassword(value: string) {
@@ -57,8 +61,8 @@ export default class NetflixSignInPage {
     ).toBeVisible();
 
     await this.page
-    .getByLabel(locatorsAndRolesForNetflix.inputPassword).fill(value);
-
+      .getByLabel(locatorsAndRolesForNetflix.inputPassword)
+      .fill(value);
   }
 
   //This function is used to sign in to Netflix
@@ -67,7 +71,7 @@ export default class NetflixSignInPage {
   //Then it maximizes the window
   //Then it clicks on the sign in button
   //Then it waits for 1 second
-  //Then it fills the email address and password  
+  //Then it fills the email address and password
   //Then it clicks on the sign in button
   //Then it waits for the page to load
   //Then it checks if the URL is the home page URL
@@ -80,19 +84,22 @@ export default class NetflixSignInPage {
     await this.fillEmailAddressPassword(password);
 
     await this.page
-      .getByRole("button", { name : locatorsAndRolesForNetflix.signInbutton })
+      .getByRole("button", { name: locatorsAndRolesForNetflix.signInbutton })
       .filter({ hasText: locatorsAndRolesForNetflix.signInButtonHasText })
       .click();
 
     await this.explicitWaitManager.explictWait();
-    
+
     await expect(this.page).toHaveURL(urlsValues.homePageUrl);
 
-    
-    const h1Element = this.page.locator(locatorsAndRolesForNetflix.whoIsWatching);
+    const h1Element = this.page.locator(
+      locatorsAndRolesForNetflix.whoIsWatching
+    );
     await expect(h1Element).toBeVisible();
-    await h1Element.screenshot({ path: `../../test-results/netflixtest/whoIsWatching.png` });
-  } 
+    await h1Element.screenshot({
+      path: `../../test-results/netflixtest/whoIsWatching.png`,
+    });
+  }
 
   async closeBrowser() {
     await this.page.close();

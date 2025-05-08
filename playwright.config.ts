@@ -34,7 +34,7 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
     video: "retain-on-failure",
-    screenshot: "only-on-failure",
+    screenshot: "on",
   },
 
   /* Configure projects for major browsers */
@@ -49,18 +49,18 @@ export default defineConfig({
       },
     },
     {
-         name: 'Mobile Safari',
-         use: { ...devices['iPhone 12'],
-            viewport: { width: 375, height: 812 },
-            isMobile: true,
-            hasTouch: true,
-            userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1',
-            contextOptions: {
-              screen: { width: 375, height: 812 },  
-            },
-            headless: false,
-         },
-    },
+      name: "Mobile Safari",
+      use: {
+        ...devices["iPhone 12"],
+        isMobile: true,
+        userAgent:
+          "Mozilla/5.0 (iPhone; CPU iPhone OS 18_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.4 Mobile/15E148 Safari/604.1",
+        contextOptions: {
+          viewport: { width: 375, height: 812 }
+        },
+        headless: false,
+    }
+  },
 
     // {
     //   name: "firefox",
